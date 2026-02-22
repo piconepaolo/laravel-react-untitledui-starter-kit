@@ -1,9 +1,18 @@
 import type { InertiaLinkProps } from '@inertiajs/react';
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
 
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
+const twMerge = extendTailwindMerge({
+    extend: {
+        theme: {
+            text: ['display-xs', 'display-sm', 'display-md', 'display-lg', 'display-xl', 'display-2xl'],
+        },
+    },
+});
+
+export const cx = twMerge;
+
+export function sortCx<T extends Record<string, string | number | Record<string, string | number | Record<string, string | number>>>>(classes: T): T {
+    return classes;
 }
 
 export function toUrl(url: NonNullable<InertiaLinkProps['href']>): string {

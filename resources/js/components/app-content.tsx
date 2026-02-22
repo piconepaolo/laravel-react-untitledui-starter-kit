@@ -1,13 +1,17 @@
-import * as React from 'react';
-import { SidebarInset } from '@/components/ui/sidebar';
+import type { ComponentProps, ReactNode } from 'react';
 
-type Props = React.ComponentProps<'main'> & {
+type Props = ComponentProps<'main'> & {
     variant?: 'header' | 'sidebar';
+    children?: ReactNode;
 };
 
 export function AppContent({ variant = 'header', children, ...props }: Props) {
     if (variant === 'sidebar') {
-        return <SidebarInset {...props}>{children}</SidebarInset>;
+        return (
+            <main className="flex flex-1 flex-col overflow-x-hidden" {...props}>
+                {children}
+            </main>
+        );
     }
 
     return (

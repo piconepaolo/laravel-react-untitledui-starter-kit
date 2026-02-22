@@ -1,36 +1,30 @@
 import { Link } from '@inertiajs/react';
-import {
-    SidebarGroup,
-    SidebarGroupLabel,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-} from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/hooks/use-current-url';
+import { cx } from '@/lib/utils';
 import type { NavItem } from '@/types';
 
 export function NavMain({ items = [] }: { items: NavItem[] }) {
     const { isCurrentUrl } = useCurrentUrl();
 
     return (
-        <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
-            <SidebarMenu>
-                {items.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                            asChild
-                            isActive={isCurrentUrl(item.href)}
-                            tooltip={{ children: item.title }}
-                        >
-                            <Link href={item.href} prefetch>
-                                {item.icon && <item.icon />}
-                                <span>{item.title}</span>
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                ))}
-            </SidebarMenu>
-        </SidebarGroup>
+        <nav className="space-y-1 px-3 py-2">
+            <p className="mb-2 px-3 text-xs font-medium uppercase tracking-wider text-text-quaternary">Platform</p>
+            {items.map((item) => (
+                <Link
+                    key={item.title}
+                    href={item.href}
+                    prefetch
+                    className={cx(
+                        'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                        isCurrentUrl(item.href)
+                            ? 'bg-bg-active text-text-primary'
+                            : 'text-text-secondary hover:bg-bg-primary_hover hover:text-text-primary',
+                    )}
+                >
+                    {item.icon && <item.icon className="size-5" />}
+                    <span>{item.title}</span>
+                </Link>
+            ))}
+        </nav>
     );
 }

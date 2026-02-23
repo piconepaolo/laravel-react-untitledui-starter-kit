@@ -8,7 +8,10 @@ type Props = ComponentProps<'main'> & {
 export function AppContent({ variant = 'header', children, ...props }: Props) {
     if (variant === 'sidebar') {
         return (
-            <main className="flex flex-1 flex-col overflow-x-hidden" {...props}>
+            <main
+                className="flex min-w-0 flex-1 flex-col overflow-x-hidden"
+                {...props}
+            >
                 {children}
             </main>
         );

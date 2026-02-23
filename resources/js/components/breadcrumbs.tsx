@@ -1,9 +1,14 @@
 import { Link } from '@inertiajs/react';
 import { ChevronRight } from '@untitledui/icons';
 import { Fragment } from 'react';
+
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
-export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: BreadcrumbItemType[] }) {
+export function Breadcrumbs({
+    breadcrumbs,
+}: {
+    breadcrumbs: BreadcrumbItemType[];
+}) {
     return (
         <>
             {breadcrumbs.length > 0 && (
@@ -15,14 +20,21 @@ export function Breadcrumbs({ breadcrumbs }: { breadcrumbs: BreadcrumbItemType[]
                                 <Fragment key={index}>
                                     <li>
                                         {isLast ? (
-                                            <span className="font-medium text-text-primary">{item.title}</span>
+                                            <span className="font-medium text-text-primary">
+                                                {item.title}
+                                            </span>
                                         ) : (
-                                            <Link href={item.href} className="text-text-tertiary transition-colors hover:text-text-secondary">
+                                            <Link
+                                                href={item.href}
+                                                className="text-text-tertiary transition-colors hover:text-text-secondary"
+                                            >
                                                 {item.title}
                                             </Link>
                                         )}
                                     </li>
-                                    {!isLast && <ChevronRight className="size-4 text-text-quaternary" />}
+                                    {!isLast && (
+                                        <ChevronRight className="size-4 text-text-quaternary" />
+                                    )}
                                 </Fragment>
                             );
                         })}

@@ -1,9 +1,14 @@
 import { Menu01 } from '@untitledui/icons';
+
 import { useSidebar } from '@/components/app-shell';
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
 
-export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: BreadcrumbItemType[] }) {
+export function AppSidebarHeader({
+    breadcrumbs = [],
+}: {
+    breadcrumbs?: BreadcrumbItemType[];
+}) {
     const { toggle } = useSidebar();
 
     return (

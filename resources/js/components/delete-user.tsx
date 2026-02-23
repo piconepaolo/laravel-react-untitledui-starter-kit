@@ -1,10 +1,17 @@
 import { Form } from '@inertiajs/react';
 import { useRef } from 'react';
-import { DialogTrigger, Modal, ModalOverlay, Dialog } from '@/components/application/modals/modal';
+
+import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
+import {
+    Dialog,
+    DialogTrigger,
+    Modal,
+    ModalOverlay,
+} from '@/components/application/modals/modal';
 import { Button } from '@/components/base/buttons/button';
 import { Input } from '@/components/base/input/input';
 import Heading from '@/components/heading';
-import ProfileController from '@/actions/App/Http/Controllers/Settings/ProfileController';
+
 
 export default function DeleteUser() {
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -25,7 +32,10 @@ export default function DeleteUser() {
                 </div>
 
                 <DialogTrigger>
-                    <Button color="primary-destructive" data-test="delete-user-button">
+                    <Button
+                        color="primary-destructive"
+                        data-test="delete-user-button"
+                    >
                         Delete account
                     </Button>
                     <ModalOverlay isDismissable>
@@ -34,13 +44,16 @@ export default function DeleteUser() {
                                 {({ close }) => (
                                     <>
                                         <h2 className="text-lg font-semibold text-text-primary">
-                                            Are you sure you want to delete your account?
+                                            Are you sure you want to delete your
+                                            account?
                                         </h2>
                                         <p className="mt-2 text-sm text-text-tertiary">
-                                            Once your account is deleted, all of its resources
-                                            and data will also be permanently deleted. Please
-                                            enter your password to confirm you would like to
-                                            permanently delete your account.
+                                            Once your account is deleted, all of
+                                            its resources and data will also be
+                                            permanently deleted. Please enter
+                                            your password to confirm you would
+                                            like to permanently delete your
+                                            account.
                                         </p>
 
                                         <Form
@@ -48,11 +61,17 @@ export default function DeleteUser() {
                                             options={{
                                                 preserveScroll: true,
                                             }}
-                                            onError={() => passwordInput.current?.focus()}
+                                            onError={() =>
+                                                passwordInput.current?.focus()
+                                            }
                                             resetOnSuccess
                                             className="mt-4 space-y-6"
                                         >
-                                            {({ resetAndClearErrors, processing, errors }) => (
+                                            {({
+                                                resetAndClearErrors,
+                                                processing,
+                                                errors,
+                                            }) => (
                                                 <>
                                                     <Input
                                                         type="password"
@@ -60,7 +79,9 @@ export default function DeleteUser() {
                                                         ref={passwordInput}
                                                         placeholder="Password"
                                                         autoComplete="current-password"
-                                                        isInvalid={!!errors.password}
+                                                        isInvalid={
+                                                            !!errors.password
+                                                        }
                                                         hint={errors.password}
                                                     />
 
@@ -77,7 +98,9 @@ export default function DeleteUser() {
                                                         <Button
                                                             color="primary-destructive"
                                                             type="submit"
-                                                            isDisabled={processing}
+                                                            isDisabled={
+                                                                processing
+                                                            }
                                                             data-test="confirm-delete-user-button"
                                                         >
                                                             Delete account

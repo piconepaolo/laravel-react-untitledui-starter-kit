@@ -1,13 +1,14 @@
 import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
+
 import Heading from '@/components/heading';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cx, toUrl } from '@/lib/utils';
-import type { NavItem } from '@/types';
 import { edit as editAppearance } from '@/routes/appearance';
 import { edit } from '@/routes/profile';
 import { show } from '@/routes/two-factor';
 import { edit as editPassword } from '@/routes/user-password';
+import type { NavItem } from '@/types';
 
 const sidebarNavItems: NavItem[] = [
     { title: 'Profile', href: edit(), icon: null },
@@ -25,21 +26,31 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
 
     return (
         <div className="px-4 py-6">
-            <Heading title="Settings" description="Manage your profile and account settings" />
+            <Heading
+                title="Settings"
+                description="Manage your profile and account settings"
+            />
 
             <div className="flex flex-col lg:flex-row lg:space-x-12">
                 <aside className="w-full max-w-xl lg:w-48">
-                    <nav className="flex flex-col space-y-1 space-x-0" aria-label="Settings">
+                    <nav
+                        className="flex flex-col space-y-1 space-x-0"
+                        aria-label="Settings"
+                    >
                         {sidebarNavItems.map((item, index) => (
                             <Link
                                 key={`${toUrl(item.href)}-${index}`}
                                 href={item.href}
                                 className={cx(
                                     'inline-flex h-9 items-center justify-start rounded-md px-3 text-sm font-medium transition-colors hover:bg-bg-primary_hover',
-                                    isCurrentUrl(item.href) ? 'bg-bg-secondary text-text-primary' : 'text-text-secondary',
+                                    isCurrentUrl(item.href)
+                                        ? 'bg-bg-secondary text-text-primary'
+                                        : 'text-text-secondary',
                                 )}
                             >
-                                {item.icon && <item.icon className="mr-2 h-4 w-4" />}
+                                {item.icon && (
+                                    <item.icon className="mr-2 h-4 w-4" />
+                                )}
                                 {item.title}
                             </Link>
                         ))}
@@ -49,7 +60,9 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
                 <div className="my-6 h-px bg-border-secondary lg:hidden" />
 
                 <div className="flex-1 md:max-w-2xl">
-                    <section className="max-w-xl space-y-12">{children}</section>
+                    <section className="max-w-xl space-y-12">
+                        {children}
+                    </section>
                 </div>
             </div>
         </div>

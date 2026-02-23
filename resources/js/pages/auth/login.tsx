@@ -1,4 +1,5 @@
 import { Form, Head } from '@inertiajs/react';
+
 import { Button } from '@/components/base/buttons/button';
 import { Checkbox } from '@/components/base/checkbox/checkbox';
 import { Input } from '@/components/base/input/input';
@@ -9,14 +10,29 @@ import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 
-type Props = { status?: string; canResetPassword: boolean; canRegister: boolean };
+type Props = {
+    status?: string;
+    canResetPassword: boolean;
+    canRegister: boolean;
+};
 
-export default function Login({ status, canResetPassword, canRegister }: Props) {
+export default function Login({
+    status,
+    canResetPassword,
+    canRegister,
+}: Props) {
     return (
-        <AuthLayout title="Log in to your account" description="Enter your email and password below to log in">
+        <AuthLayout
+            title="Log in to your account"
+            description="Enter your email and password below to log in"
+        >
             <Head title="Log in" />
 
-            <Form {...store.form()} resetOnSuccess={['password']} className="flex flex-col gap-6">
+            <Form
+                {...store.form()}
+                resetOnSuccess={['password']}
+                className="flex flex-col gap-6"
+            >
                 {({ processing, errors }) => (
                     <>
                         <div className="grid gap-6">
@@ -36,7 +52,11 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                                 <div className="flex items-center">
                                     <Label>Password</Label>
                                     {canResetPassword && (
-                                        <TextLink href={request()} className="ml-auto text-sm" tabIndex={5}>
+                                        <TextLink
+                                            href={request()}
+                                            className="ml-auto text-sm"
+                                            tabIndex={5}
+                                        >
                                             Forgot password?
                                         </TextLink>
                                     )}
@@ -54,7 +74,13 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
 
                             <Checkbox name="remember" label="Remember me" />
 
-                            <Button type="submit" className="mt-4 w-full" isDisabled={processing} isLoading={processing} data-test="login-button">
+                            <Button
+                                type="submit"
+                                className="mt-4 w-full"
+                                isDisabled={processing}
+                                isLoading={processing}
+                                data-test="login-button"
+                            >
                                 Log in
                             </Button>
                         </div>
@@ -62,14 +88,20 @@ export default function Login({ status, canResetPassword, canRegister }: Props) 
                         {canRegister && (
                             <div className="text-center text-sm text-text-tertiary">
                                 Don't have an account?{' '}
-                                <TextLink href={register()} tabIndex={5}>Sign up</TextLink>
+                                <TextLink href={register()} tabIndex={5}>
+                                    Sign up
+                                </TextLink>
                             </div>
                         )}
                     </>
                 )}
             </Form>
 
-            {status && <div className="mb-4 text-center text-sm font-medium text-success-600">{status}</div>}
+            {status && (
+                <div className="mb-4 text-center text-sm font-medium text-success-600">
+                    {status}
+                </div>
+            )}
         </AuthLayout>
     );
 }

@@ -1,12 +1,13 @@
 import { router } from '@inertiajs/react';
 import { LogOut01, Settings01 } from '@untitledui/icons';
+
 import { Dropdown } from '@/components/base/dropdown/dropdown';
 import { UserInfo } from '@/components/user-info';
 import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
 import { toUrl } from '@/lib/utils';
-import type { User } from '@/types';
 import { logout } from '@/routes';
 import { edit } from '@/routes/profile';
+import type { User } from '@/types';
 
 type Props = { user: User };
 

@@ -1,12 +1,18 @@
-import type { SVGProps } from "react";
-import { useId } from "react";
-import { cx } from "@/utils/cx";
+import type { SVGProps } from 'react';
+import { useId } from 'react';
+
+import { cx } from '@/utils/cx';
 
 export const UntitledLogoMinimal = (props: SVGProps<SVGSVGElement>) => {
     const id = useId();
 
     return (
-        <svg viewBox="0 0 38 38" fill="none" {...props} className={cx("size-8 origin-center scale-[1.2]", props.className)}>
+        <svg
+            viewBox="0 0 38 38"
+            fill="none"
+            {...props}
+            className={cx('size-8 origin-center scale-[1.2]', props.className)}
+        >
             <g filter={`url(#filter0-${id}`}>
                 <g clipPath={`url(#clip0-${id}`}>
                     <path
@@ -27,10 +33,41 @@ export const UntitledLogoMinimal = (props: SVGProps<SVGSVGElement>) => {
                         />
                     </g>
                     <g filter={`url(#filter1_dd-${id}`}>
-                        <rect x="11" y="10" width="16" height="16" rx="8" fill={`url(#paint1_linear-${id}`} />
-                        <rect x="11" y="10" width="16" height="16" rx="8" fill={`url(#paint2_radial-${id}`} fillOpacity="0.08" />
-                        <rect x="11" y="10" width="16" height="16" rx="8" fill={`url(#paint3_radial-${id}`} fillOpacity="0.18" />
-                        <rect x="11" y="10" width="16" height="16" rx="8" fill={`url(#paint4_radial-${id}`} fillOpacity="0.05" />
+                        <rect
+                            x="11"
+                            y="10"
+                            width="16"
+                            height="16"
+                            rx="8"
+                            fill={`url(#paint1_linear-${id}`}
+                        />
+                        <rect
+                            x="11"
+                            y="10"
+                            width="16"
+                            height="16"
+                            rx="8"
+                            fill={`url(#paint2_radial-${id}`}
+                            fillOpacity="0.08"
+                        />
+                        <rect
+                            x="11"
+                            y="10"
+                            width="16"
+                            height="16"
+                            rx="8"
+                            fill={`url(#paint3_radial-${id}`}
+                            fillOpacity="0.18"
+                        />
+                        <rect
+                            x="11"
+                            y="10"
+                            width="16"
+                            height="16"
+                            rx="8"
+                            fill={`url(#paint4_radial-${id}`}
+                            fillOpacity="0.05"
+                        />
                         <path
                             d="M23.8 14.0414C23.8 15.3898 21.651 14.5297 19 14.5297C16.349 14.5297 14.2 15.3898 14.2 14.0414C14.2 12.693 16.349 11.6 19 11.6C21.651 11.6 23.8 12.693 23.8 14.0414Z"
                             fill={`url(#paint5_linear-${id}`}
@@ -61,58 +98,200 @@ export const UntitledLogoMinimal = (props: SVGProps<SVGSVGElement>) => {
                 <clipPath id={`imageClip-${id}`}>
                     <path d="M 0 19 L 38 19 L 38 28.88  A 9.12 9.12 0 0 1 28.88 38 L 9.12 38 A 9.12 9.12 0 0 1 0 28.88 Z" />
                 </clipPath>
-                <filter id={`filter0-${id}`} x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <filter
+                    id={`filter0-${id}`}
+                    x="0"
+                    y="0"
+                    width="38"
+                    height="38"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
                     <feOffset dy="1" />
                     <feGaussianBlur stdDeviation="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0" />
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow"
+                    />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
                     <feOffset dy="1" />
                     <feGaussianBlur stdDeviation="1.5" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                    <feMorphology radius="0.5" operator="erode" in="SourceAlpha" result="effect3_dropShadow" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="effect1_dropShadow"
+                        result="effect2_dropShadow"
+                    />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
+                    <feMorphology
+                        radius="0.5"
+                        operator="erode"
+                        in="SourceAlpha"
+                        result="effect3_dropShadow"
+                    />
                     <feOffset dy="1" />
                     <feGaussianBlur stdDeviation="0.5" />
                     <feComposite in2="hardAlpha" operator="out" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.13 0" />
-                    <feBlend mode="normal" in2="effect2_dropShadow" result="effect3_dropShadow" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow" result="shape" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.13 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="effect2_dropShadow"
+                        result="effect3_dropShadow"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect3_dropShadow"
+                        result="shape"
+                    />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
                     <feOffset dy="-0.5" />
                     <feGaussianBlur stdDeviation="0.25" />
-                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="shape" result="effect4_innerShadow" />
+                    <feComposite
+                        in2="hardAlpha"
+                        operator="arithmetic"
+                        k2="-1"
+                        k3="1"
+                    />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="shape"
+                        result="effect4_innerShadow"
+                    />
                 </filter>
-                <filter id={`filter1_dd-${id}`} x="8" y="8" width="22" height="22" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <filter
+                    id={`filter1_dd-${id}`}
+                    x="8"
+                    y="8"
+                    width="22"
+                    height="22"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
                     <feOffset dy="1" />
                     <feGaussianBlur stdDeviation="1" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0" />
-                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
-                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.06 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="BackgroundImageFix"
+                        result="effect1_dropShadow"
+                    />
+                    <feColorMatrix
+                        in="SourceAlpha"
+                        type="matrix"
+                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                        result="hardAlpha"
+                    />
                     <feOffset dy="1" />
                     <feGaussianBlur stdDeviation="1.5" />
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0" />
-                    <feBlend mode="normal" in2="effect1_dropShadow" result="effect2_dropShadow" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow" result="shape" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="0 0 0 0 0.0392157 0 0 0 0 0.0509804 0 0 0 0 0.0705882 0 0 0 0.1 0"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in2="effect1_dropShadow"
+                        result="effect2_dropShadow"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect2_dropShadow"
+                        result="shape"
+                    />
                 </filter>
-                <filter id={`filter2_b-${id}`} x="-2" y="13" width="42" height="26" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                <filter
+                    id={`filter2_b-${id}`}
+                    x="-2"
+                    y="13"
+                    width="42"
+                    height="26"
+                    filterUnits="userSpaceOnUse"
+                    colorInterpolationFilters="sRGB"
+                >
                     <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="2.5" />
-                    <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur" />
-                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape" />
+                    <feGaussianBlur
+                        in="BackgroundImageFix"
+                        stdDeviation="2.5"
+                    />
+                    <feComposite
+                        in2="SourceAlpha"
+                        operator="in"
+                        result="effect1_backgroundBlur"
+                    />
+                    <feBlend
+                        mode="normal"
+                        in="SourceGraphic"
+                        in2="effect1_backgroundBlur"
+                        result="shape"
+                    />
                 </filter>
-                <linearGradient id={`paint0_linear-${id}`} x1="19" y1="2" x2="19" y2="34" gradientUnits="userSpaceOnUse">
+                <linearGradient
+                    id={`paint0_linear-${id}`}
+                    x1="19"
+                    y1="2"
+                    x2="19"
+                    y2="34"
+                    gradientUnits="userSpaceOnUse"
+                >
                     <stop stopColor="white" />
                     <stop offset="1" stopColor="#0A0D12" />
                 </linearGradient>
-                <linearGradient id={`paint1_linear-${id}`} x1="15" y1="26" x2="23" y2="10" gradientUnits="userSpaceOnUse">
+                <linearGradient
+                    id={`paint1_linear-${id}`}
+                    x1="15"
+                    y1="26"
+                    x2="23"
+                    y2="10"
+                    gradientUnits="userSpaceOnUse"
+                >
                     <stop stopColor="#53389E" />
                     <stop offset="1" stopColor="#6941C6" />
                 </linearGradient>
@@ -151,7 +330,14 @@ export const UntitledLogoMinimal = (props: SVGProps<SVGSVGElement>) => {
                     <stop stopColor="white" />
                     <stop offset="1" stopColor="white" stopOpacity="0" />
                 </radialGradient>
-                <linearGradient id={`paint5_linear-${id}`} x1="19" y1="11.6" x2="19" y2="14.8" gradientUnits="userSpaceOnUse">
+                <linearGradient
+                    id={`paint5_linear-${id}`}
+                    x1="19"
+                    y1="11.6"
+                    x2="19"
+                    y2="14.8"
+                    gradientUnits="userSpaceOnUse"
+                >
                     <stop stopColor="white" />
                     <stop offset="1" stopColor="white" stopOpacity="0.1" />
                 </linearGradient>
@@ -162,7 +348,12 @@ export const UntitledLogoMinimal = (props: SVGProps<SVGSVGElement>) => {
                     />
                 </clipPath>
                 <clipPath id={`clip1-${id}`}>
-                    <rect width="32" height="32" fill="white" transform="translate(3 2)" />
+                    <rect
+                        width="32"
+                        height="32"
+                        fill="white"
+                        transform="translate(3 2)"
+                    />
                 </clipPath>
             </defs>
         </svg>

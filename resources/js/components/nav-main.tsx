@@ -1,4 +1,5 @@
 import { Link } from '@inertiajs/react';
+
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { cx } from '@/lib/utils';
 import type { NavItem } from '@/types';
@@ -8,7 +9,9 @@ export function NavMain({ items = [] }: { items: NavItem[] }) {
 
     return (
         <nav className="space-y-1 px-3 py-2">
-            <p className="mb-2 px-3 text-xs font-medium uppercase tracking-wider text-text-quaternary">Platform</p>
+            <p className="mb-2 px-3 text-xs font-medium tracking-wider text-text-quaternary uppercase">
+                Platform
+            </p>
             {items.map((item) => (
                 <Link
                     key={item.title}

@@ -12,6 +12,18 @@ export default [
     reactHooks.configs.flat.recommended,
     ...typescript.configs.recommended,
     {
+        rules: {
+            '@typescript-eslint/no-empty-object-type': 'off',
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
+        },
+    },
+    {
         ...react.configs.flat.recommended,
         ...react.configs.flat['jsx-runtime'], // Required for React 17+
         languageOptions: {
@@ -43,6 +55,7 @@ export default [
                 'error',
                 {
                     groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
+                    'newlines-between': 'always',
                     alphabetize: {
                         order: 'asc',
                         caseInsensitive: true,

@@ -1,7 +1,13 @@
 import { toUrl } from '@/lib/utils';
 import type { NavItem } from '@/types';
 
-export function NavFooter({ items, className }: { items: NavItem[]; className?: string }) {
+export function NavFooter({
+    items,
+    className,
+}: {
+    items: NavItem[];
+    className?: string;
+}) {
     return (
         <div className={className}>
             <div className="space-y-1 px-3">

@@ -1,5 +1,12 @@
 import { usePage } from '@inertiajs/react';
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
+import {
+    createContext,
+    useCallback,
+    useContext,
+    useState,
+    type ReactNode,
+} from 'react';
+
 import { useIsMobile } from '@/hooks/use-mobile';
 
 type SidebarContextType = {
@@ -41,12 +48,21 @@ export function AppShell({ children, variant = 'header' }: Props) {
     }, []);
 
     if (variant === 'header') {
-        return <div className="flex min-h-screen w-full flex-col">{children}</div>;
+        return (
+            <div className="flex min-h-screen w-full flex-col">{children}</div>
+        );
     }
 
     return (
-        <SidebarContext.Provider value={{ isOpen: isMobile ? false : isOpen, isMobile, toggle, setOpen }}>
-            <div className="flex min-h-screen">{children}</div>
+        <SidebarContext.Provider
+            value={{
+                isOpen: isMobile ? false : isOpen,
+                isMobile,
+                toggle,
+                setOpen,
+            }}
+        >
+            <div className="flex min-h-screen w-full">{children}</div>
         </SidebarContext.Provider>
     );
 }

@@ -1,14 +1,15 @@
-import { X as CloseIcon, Menu02 } from "@untitledui/icons";
-import type { PropsWithChildren } from "react";
+import { X as CloseIcon, Menu02 } from '@untitledui/icons';
+import type { PropsWithChildren } from 'react';
 import {
     Button as AriaButton,
     Dialog as AriaDialog,
     DialogTrigger as AriaDialogTrigger,
     Modal as AriaModal,
     ModalOverlay as AriaModalOverlay,
-} from "react-aria-components";
-import { UntitledLogo } from "@/components/foundations/logo/untitledui-logo";
-import { cx } from "@/utils/cx";
+} from 'react-aria-components';
+
+import { UntitledLogo } from '@/components/foundations/logo/untitledui-logo';
+import { cx } from '@/utils/cx';
 
 export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
     return (
@@ -29,9 +30,11 @@ export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
                 isDismissable
                 className={({ isEntering, isExiting }) =>
                     cx(
-                        "fixed inset-0 z-50 cursor-pointer bg-overlay/70 pr-16 backdrop-blur-md lg:hidden",
-                        isEntering && "duration-300 ease-in-out animate-in fade-in",
-                        isExiting && "duration-200 ease-in-out animate-out fade-out",
+                        'fixed inset-0 z-50 cursor-pointer bg-overlay/70 pr-16 backdrop-blur-md lg:hidden',
+                        isEntering &&
+                            'duration-300 ease-in-out animate-in fade-in',
+                        isExiting &&
+                            'duration-200 ease-in-out animate-out fade-out',
                     )
                 }
             >
@@ -46,7 +49,9 @@ export const MobileNavigationHeader = ({ children }: PropsWithChildren) => {
                         </AriaButton>
 
                         <AriaModal className="w-full cursor-auto will-change-transform">
-                            <AriaDialog className="h-dvh outline-hidden focus:outline-hidden">{children}</AriaDialog>
+                            <AriaDialog className="h-dvh outline-hidden focus:outline-hidden">
+                                {children}
+                            </AriaDialog>
                         </AriaModal>
                     </>
                 )}

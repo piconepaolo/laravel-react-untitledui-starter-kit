@@ -1,25 +1,50 @@
-import { SearchLg as SearchIcon } from "@untitledui/icons";
-import type { FocusEventHandler, PointerEventHandler, RefAttributes, RefObject } from "react";
-import { useCallback, useContext, useRef, useState } from "react";
-import type { ComboBoxProps as AriaComboBoxProps, GroupProps as AriaGroupProps, ListBoxProps as AriaListBoxProps } from "react-aria-components";
-import { ComboBox as AriaComboBox, Group as AriaGroup, Input as AriaInput, ListBox as AriaListBox, ComboBoxStateContext } from "react-aria-components";
-import { HintText } from "@/components/base/input/hint-text";
-import { Label } from "@/components/base/input/label";
-import { Popover } from "@/components/base/select/popover";
-import { type CommonProps, SelectContext, type SelectItemType, sizes } from "@/components/base/select/select";
-import { useResizeObserver } from "@/hooks/use-resize-observer";
-import { cx } from "@/utils/cx";
+import { SearchLg as SearchIcon } from '@untitledui/icons';
+import type {
+    FocusEventHandler,
+    PointerEventHandler,
+    RefAttributes,
+    RefObject,
+} from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
+import type {
+    ComboBoxProps as AriaComboBoxProps,
+    GroupProps as AriaGroupProps,
+    ListBoxProps as AriaListBoxProps,
+} from 'react-aria-components';
+import {
+    ComboBox as AriaComboBox,
+    Group as AriaGroup,
+    Input as AriaInput,
+    ListBox as AriaListBox,
+    ComboBoxStateContext,
+} from 'react-aria-components';
 
-interface ComboBoxProps extends Omit<AriaComboBoxProps<SelectItemType>, "children" | "items">, RefAttributes<HTMLDivElement>, CommonProps {
+import { HintText } from '@/components/base/input/hint-text';
+import { Label } from '@/components/base/input/label';
+import { Popover } from '@/components/base/select/popover';
+import {
+    type CommonProps,
+    SelectContext,
+    type SelectItemType,
+    sizes,
+} from '@/components/base/select/select';
+import { useResizeObserver } from '@/hooks/use-resize-observer';
+import { cx } from '@/utils/cx';
+
+interface ComboBoxProps
+    extends
+        Omit<AriaComboBoxProps<SelectItemType>, 'children' | 'items'>,
+        RefAttributes<HTMLDivElement>,
+        CommonProps {
     shortcut?: boolean;
     items?: SelectItemType[];
     popoverClassName?: string;
     shortcutClassName?: string;
-    children: AriaListBoxProps<SelectItemType>["children"];
+    children: AriaListBoxProps<SelectItemType>['children'];
 }
 
 interface ComboBoxValueProps extends AriaGroupProps {
-    size: "sm" | "md";
+    size: 'sm' | 'md';
     shortcut: boolean;
     placeholder?: string;
     shortcutClassName?: string;
@@ -28,13 +53,19 @@ interface ComboBoxValueProps extends AriaGroupProps {
     ref?: RefObject<HTMLDivElement | null>;
 }
 
-const ComboBoxValue = ({ size, shortcut, placeholder, shortcutClassName, ...otherProps }: ComboBoxValueProps) => {
+const ComboBoxValue = ({
+    size,
+    shortcut,
+    placeholder,
+    shortcutClassName,
+    ...otherProps
+}: ComboBoxValueProps) => {
     const state = useContext(ComboBoxStateContext);
 
     const value = state?.selectedItem?.value || null;
     const inputValue = state?.inputValue || null;
 
-    const first = inputValue?.split(value?.supportingText)?.[0] || "";
+    const first = inputValue?.split(value?.supportingText)?.[0] || '';
     const last = inputValue?.split(first)[1];
 
     return (
@@ -42,9 +73,9 @@ const ComboBoxValue = ({ size, shortcut, placeholder, shortcutClassName, ...othe
             {...otherProps}
             className={({ isFocusWithin, isDisabled }) =>
                 cx(
-                    "relative flex w-full items-center gap-2 rounded-lg bg-primary shadow-xs ring-1 ring-primary outline-hidden transition-shadow duration-100 ease-linear ring-inset",
-                    isDisabled && "cursor-not-allowed bg-disabled_subtle",
-                    isFocusWithin && "ring-2 ring-brand",
+                    'relative flex w-full items-center gap-2 rounded-lg bg-primary shadow-xs ring-1 ring-primary outline-hidden transition-shadow duration-100 ease-linear ring-inset',
+                    isDisabled && 'cursor-not-allowed bg-disabled_subtle',
+                    isFocusWithin && 'ring-2 ring-brand',
                     sizes[size].root,
                 )
             }
@@ -55,9 +86,28 @@ const ComboBoxValue = ({ size, shortcut, placeholder, shortcutClassName, ...othe
 
                     <div className="relative flex w-full items-center gap-2">
                         {inputValue && (
-                            <span className="absolute top-1/2 z-0 inline-flex w-full -translate-y-1/2 gap-2 truncate" aria-hidden="true">
-                                <p className={cx("text-md font-medium text-primary", isDisabled && "text-disabled")}>{first}</p>
-                                {last && <p className={cx("-ml-0.75 text-md text-tertiary", isDisabled && "text-disabled")}>{last}</p>}
+                            <span
+                                className="absolute top-1/2 z-0 inline-flex w-full -translate-y-1/2 gap-2 truncate"
+                                aria-hidden="true"
+                            >
+                                <p
+                                    className={cx(
+                                        'text-md font-medium text-primary',
+                                        isDisabled && 'text-disabled',
+                                    )}
+                                >
+                                    {first}
+                                </p>
+                                {last && (
+                                    <p
+                                        className={cx(
+                                            '-ml-0.75 text-md text-tertiary',
+                                            isDisabled && 'text-disabled',
+                                        )}
+                                    >
+                                        {last}
+                                    </p>
+                                )}
                             </span>
                         )}
 
@@ -70,16 +120,17 @@ const ComboBoxValue = ({ size, shortcut, placeholder, shortcutClassName, ...othe
                     {shortcut && (
                         <div
                             className={cx(
-                                "absolute inset-y-0.5 right-0.5 z-10 flex items-center rounded-r-[inherit] bg-linear-to-r from-transparent to-bg-primary to-40% pl-8",
-                                isDisabled && "to-bg-disabled_subtle",
+                                'absolute inset-y-0.5 right-0.5 z-10 flex items-center rounded-r-[inherit] bg-linear-to-r from-transparent to-bg-primary to-40% pl-8',
+                                isDisabled && 'to-bg-disabled_subtle',
                                 sizes[size].shortcut,
                                 shortcutClassName,
                             )}
                         >
                             <span
                                 className={cx(
-                                    "pointer-events-none rounded px-1 py-px text-xs font-medium text-quaternary ring-1 ring-secondary select-none ring-inset",
-                                    isDisabled && "bg-transparent text-disabled",
+                                    'pointer-events-none rounded px-1 py-px text-xs font-medium text-quaternary ring-1 ring-secondary select-none ring-inset',
+                                    isDisabled &&
+                                        'bg-transparent text-disabled',
                                 )}
                                 aria-hidden="true"
                             >
@@ -93,9 +144,17 @@ const ComboBoxValue = ({ size, shortcut, placeholder, shortcutClassName, ...othe
     );
 };
 
-export const ComboBox = ({ placeholder = "Search", shortcut = true, size = "sm", children, items, shortcutClassName, ...otherProps }: ComboBoxProps) => {
+export const ComboBox = ({
+    placeholder = 'Search',
+    shortcut = true,
+    size = 'sm',
+    children,
+    items,
+    shortcutClassName,
+    ...otherProps
+}: ComboBoxProps) => {
     const placeholderRef = useRef<HTMLDivElement>(null);
-    const [popoverWidth, setPopoverWidth] = useState("");
+    const [popoverWidth, setPopoverWidth] = useState('');
 
     // Resize observer for popover width
     const onResize = useCallback(() => {
@@ -103,12 +162,12 @@ export const ComboBox = ({ placeholder = "Search", shortcut = true, size = "sm",
 
         const divRect = placeholderRef.current?.getBoundingClientRect();
 
-        setPopoverWidth(divRect.width + "px");
+        setPopoverWidth(divRect.width + 'px');
     }, [placeholderRef, setPopoverWidth]);
 
     useResizeObserver({
         ref: placeholderRef,
-        box: "border-box",
+        box: 'border-box',
         onResize,
     });
 
@@ -118,7 +177,10 @@ export const ComboBox = ({ placeholder = "Search", shortcut = true, size = "sm",
                 {(state) => (
                     <div className="flex flex-col gap-1.5">
                         {otherProps.label && (
-                            <Label isRequired={state.isRequired} tooltip={otherProps.tooltip}>
+                            <Label
+                                isRequired={state.isRequired}
+                                tooltip={otherProps.tooltip}
+                            >
                                 {otherProps.label}
                             </Label>
                         )}
@@ -135,13 +197,25 @@ export const ComboBox = ({ placeholder = "Search", shortcut = true, size = "sm",
                             onPointerEnter={onResize}
                         />
 
-                        <Popover size={size} triggerRef={placeholderRef} style={{ width: popoverWidth }} className={otherProps.popoverClassName}>
-                            <AriaListBox items={items} className="size-full outline-hidden">
+                        <Popover
+                            size={size}
+                            triggerRef={placeholderRef}
+                            style={{ width: popoverWidth }}
+                            className={otherProps.popoverClassName}
+                        >
+                            <AriaListBox
+                                items={items}
+                                className="size-full outline-hidden"
+                            >
                                 {children}
                             </AriaListBox>
                         </Popover>
 
-                        {otherProps.hint && <HintText isInvalid={state.isInvalid}>{otherProps.hint}</HintText>}
+                        {otherProps.hint && (
+                            <HintText isInvalid={state.isInvalid}>
+                                {otherProps.hint}
+                            </HintText>
+                        )}
                     </div>
                 )}
             </AriaComboBox>

@@ -36,11 +36,17 @@ jobs:
       - name: Run Pint
         run: composer lint
 
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --memory-limit=2G --no-progress
+
       - name: Format Frontend
         run: npm run format
 
       - name: Lint Frontend
         run: npm run lint
+
+      - name: TypeScript Type Check
+        run: npm run types
 
       # - name: Commit Changes
       #   uses: stefanzweifel/git-auto-commit-action@v7

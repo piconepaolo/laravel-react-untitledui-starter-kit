@@ -1,9 +1,12 @@
 import { Form } from '@inertiajs/react';
 import { Eye, EyeOff, Lock01, RefreshCw01 } from '@untitledui/icons';
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { Button } from '@/components/base/buttons/button';
-import AlertError from './alert-error';
 import { regenerateRecoveryCodes } from '@/routes/two-factor';
+
+import AlertError from './alert-error';
+
 
 type Props = {
     recoveryCodesList: string[];
@@ -115,9 +118,7 @@ export default function TwoFactorRecoveryCodes({
                                             </div>
                                         ))
                                     ) : (
-                                        <div
-                                            aria-label="Loading recovery codes"
-                                        >
+                                        <div aria-label="Loading recovery codes">
                                             {Array.from(
                                                 { length: 8 },
                                                 (_, index) => (

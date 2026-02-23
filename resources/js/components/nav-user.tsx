@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import { ChevronSelectorVertical } from '@untitledui/icons';
+
 import { Dropdown } from '@/components/base/dropdown/dropdown';
 import { UserInfo } from '@/components/user-info';
 import { UserMenuContent } from '@/components/user-menu-content';

@@ -2,15 +2,22 @@ import { Form } from '@inertiajs/react';
 import { Check, Copy01, Scan } from '@untitledui/icons';
 import { REGEXP_ONLY_DIGITS } from 'input-otp';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Dialog, Modal, ModalOverlay } from '@/components/application/modals/modal';
+
+import {
+    Dialog,
+    Modal,
+    ModalOverlay,
+} from '@/components/application/modals/modal';
 import { Button } from '@/components/base/buttons/button';
 import { PinInput } from '@/components/base/pin-input/pin-input';
 import { Spinner } from '@/components/spinner';
 import { useAppearance } from '@/hooks/use-appearance';
 import { useClipboard } from '@/hooks/use-clipboard';
 import { OTP_MAX_LENGTH } from '@/hooks/use-two-factor-auth';
-import AlertError from './alert-error';
 import { confirm } from '@/routes/two-factor';
+
+import AlertError from './alert-error';
+
 
 function GridScanIcon() {
     return (
@@ -303,7 +310,11 @@ export default function TwoFactorSetupModal({
     }, [onClose, resetModalState]);
 
     return (
-        <ModalOverlay isOpen={isOpen} onOpenChange={(open) => !open && handleClose()} isDismissable>
+        <ModalOverlay
+            isOpen={isOpen}
+            onOpenChange={(open) => !open && handleClose()}
+            isDismissable
+        >
             <Modal>
                 <Dialog>
                     {() => (
@@ -322,7 +333,9 @@ export default function TwoFactorSetupModal({
                                 {showVerificationStep ? (
                                     <TwoFactorVerificationStep
                                         onClose={onClose}
-                                        onBack={() => setShowVerificationStep(false)}
+                                        onBack={() =>
+                                            setShowVerificationStep(false)
+                                        }
                                     />
                                 ) : (
                                     <TwoFactorSetupStep

@@ -1,31 +1,48 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen01, Folder, Grid01 } from '@untitledui/icons';
-import { useSidebar } from '@/components/app-shell';
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
-import { cx } from '@/lib/utils';
-import type { NavItem } from '@/types';
-import AppLogo from './app-logo';
-import { dashboard } from '@/routes';
+import { BookOpen01, Folder, Grid01, Settings01 } from '@untitledui/icons';
 
-const mainNavItems: NavItem[] = [
-    { title: 'Dashboard', href: dashboard(), icon: Grid01 },
+import { useSidebar } from '@/components/app-shell';
+import { NavItemBase } from '@/components/application/app-navigation/base-components/nav-item';
+import { NavList } from '@/components/application/app-navigation/base-components/nav-list';
+import type { NavItemType } from '@/components/application/app-navigation/config';
+import { NavUser } from '@/components/nav-user';
+import { useCurrentUrl } from '@/hooks/use-current-url';
+import { cx, toUrl } from '@/lib/utils';
+import { dashboard } from '@/routes';
+import { edit } from '@/routes/profile';
+
+import AppLogo from './app-logo';
+
+const mainNavItems: NavItemType[] = [
+    { label: 'Dashboard', href: toUrl(dashboard()), icon: Grid01 },
+    { label: 'Settings', href: toUrl(edit()), icon: Settings01 },
 ];
 
-const footerNavItems: NavItem[] = [
-    { title: 'Repository', href: 'https://github.com/laravel/react-starter-kit', icon: Folder },
-    { title: 'Documentation', href: 'https://laravel.com/docs/starter-kits#react', icon: BookOpen01 },
+const footerNavItems: NavItemType[] = [
+    {
+        label: 'Repository',
+        href: 'https://github.com/laravel/react-starter-kit',
+        icon: Folder,
+    },
+    {
+        label: 'Documentation',
+        href: 'https://laravel.com/docs/starter-kits#react',
+        icon: BookOpen01,
+    },
 ];
 
 export function AppSidebar() {
     const { isOpen, isMobile, setOpen } = useSidebar();
+    const { currentUrl } = useCurrentUrl();
 
     return (
         <>
             {/* Mobile overlay */}
             {isMobile && isOpen && (
-                <div className="fixed inset-0 z-40 bg-gray-950/60" onClick={() => setOpen(false)} />
+                <div
+                    className="fixed inset-0 z-40 bg-gray-950/60"
+                    onClick={() => setOpen(false)}
+                />
             )}
 
             <aside
@@ -34,18 +51,43 @@ export function AppSidebar() {
                     isOpen ? 'translate-x-0' : '-translate-x-full',
                 )}
             >
+                {/* Logo */}
                 <div className="flex h-16 shrink-0 items-center px-4">
-                    <Link href={dashboard()} prefetch className="flex items-center gap-2">
+                    <Link
+                        href={dashboard()}
+                        prefetch
+                        className="flex items-center gap-2"
+                    >
                         <AppLogo />
                     </Link>
                 </div>
 
+                {/* Main navigation */}
                 <div className="flex-1 overflow-y-auto">
-                    <NavMain items={mainNavItems} />
+                    <NavList
+                        activeUrl={currentUrl}
+                        items={mainNavItems}
+                        className="mt-0"
+                    />
                 </div>
 
+                {/* Footer navigation + user */}
                 <div className="shrink-0 border-t border-border-secondary">
-                    <NavFooter items={footerNavItems} className="mt-auto" />
+                    <ul className="flex flex-col px-2 py-2 lg:px-4">
+                        {footerNavItems.map((item) => (
+                            <li key={item.label} className="py-0.5">
+                                <NavItemBase
+                                    badge={item.badge}
+                                    icon={item.icon}
+                                    href={item.href}
+                                    type="link"
+                                    current={item.href === currentUrl}
+                                >
+                                    {item.label}
+                                </NavItemBase>
+                            </li>
+                        ))}
+                    </ul>
                     <NavUser />
                 </div>
             </aside>

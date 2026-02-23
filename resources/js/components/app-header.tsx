@@ -1,5 +1,12 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen01, Folder, Grid01, Menu01, SearchLg } from '@untitledui/icons';
+import {
+    BookOpen01,
+    Folder,
+    Grid01,
+    Menu01,
+    SearchLg,
+} from '@untitledui/icons';
+
 import { SlideoutMenu } from '@/components/application/slideout-menus/slideout-menu';
 import { Avatar } from '@/components/base/avatar/avatar';
 import { Button } from '@/components/base/buttons/button';
@@ -10,17 +17,29 @@ import { UserMenuContent } from '@/components/user-menu-content';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { useInitials } from '@/hooks/use-initials';
 import { cx, toUrl } from '@/lib/utils';
+import { dashboard } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
+
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
-import { dashboard } from '@/routes';
+
 
 type Props = { breadcrumbs?: BreadcrumbItem[] };
 
-const mainNavItems: NavItem[] = [{ title: 'Dashboard', href: dashboard(), icon: Grid01 }];
+const mainNavItems: NavItem[] = [
+    { title: 'Dashboard', href: dashboard(), icon: Grid01 },
+];
 const rightNavItems: NavItem[] = [
-    { title: 'Repository', href: 'https://github.com/laravel/react-starter-kit', icon: Folder },
-    { title: 'Documentation', href: 'https://laravel.com/docs/starter-kits#react', icon: BookOpen01 },
+    {
+        title: 'Repository',
+        href: 'https://github.com/laravel/react-starter-kit',
+        icon: Folder,
+    },
+    {
+        title: 'Documentation',
+        href: 'https://laravel.com/docs/starter-kits#react',
+        icon: BookOpen01,
+    },
 ];
 
 const activeItemStyles = 'text-text-primary dark:text-gray-100';
@@ -38,7 +57,12 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     {/* Mobile Menu */}
                     <div className="lg:hidden">
                         <SlideoutMenu.Trigger>
-                            <Button color="tertiary" size="sm" iconLeading={Menu01} className="mr-2" />
+                            <Button
+                                color="tertiary"
+                                size="sm"
+                                iconLeading={Menu01}
+                                className="mr-2"
+                            />
                             <SlideoutMenu.Content>
                                 <SlideoutMenu.Header>
                                     <AppLogoIcon className="h-6 w-6 fill-current text-text-primary" />
@@ -131,7 +155,10 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                             </button>
                             <div className="ml-1 hidden gap-1 lg:flex">
                                 {rightNavItems.map((item) => (
-                                    <Tooltip key={item.title} title={item.title}>
+                                    <Tooltip
+                                        key={item.title}
+                                        title={item.title}
+                                    >
                                         <a
                                             href={toUrl(item.href)}
                                             target="_blank"

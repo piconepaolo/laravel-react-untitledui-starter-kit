@@ -1,5 +1,6 @@
 import { Monitor01, Moon01, Sun } from '@untitledui/icons';
 import type { ComponentType, HTMLAttributes, SVGAttributes } from 'react';
+
 import type { Appearance } from '@/hooks/use-appearance';
 import { useAppearance } from '@/hooks/use-appearance';
 import { cx } from '@/lib/utils';
@@ -10,7 +11,11 @@ export default function AppearanceToggleTab({
 }: HTMLAttributes<HTMLDivElement>) {
     const { appearance, updateAppearance } = useAppearance();
 
-    const tabs: { value: Appearance; icon: ComponentType<SVGAttributes<SVGElement>>; label: string }[] = [
+    const tabs: {
+        value: Appearance;
+        icon: ComponentType<SVGAttributes<SVGElement>>;
+        label: string;
+    }[] = [
         { value: 'light', icon: Sun, label: 'Light' },
         { value: 'dark', icon: Moon01, label: 'Dark' },
         { value: 'system', icon: Monitor01, label: 'System' },

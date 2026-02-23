@@ -6,19 +6,153 @@ Our React starter kit provides a robust, modern starting point for building Lara
 
 Inertia allows you to build modern, single-page React applications using classic server-side routing and controllers. This lets you enjoy the frontend power of React combined with the incredible backend productivity of Laravel and lightning-fast Vite compilation.
 
-This React starter kit utilizes React 19, TypeScript, Tailwind, and the [shadcn/ui](https://ui.shadcn.com) and [radix-ui](https://www.radix-ui.com) component libraries.
+This React starter kit utilizes React 19, TypeScript, Tailwind CSS 4, and [Untitled UI](https://www.untitledui.com/) components.
 
-## Official Documentation
+## Getting Started
 
-Documentation for all Laravel starter kits can be found on the [Laravel website](https://laravel.com/docs/starter-kits).
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+```
 
-## Contributing
+To start the development server:
 
-Thank you for considering contributing to our starter kit! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer run dev
+```
 
-## Code of Conduct
+This concurrently starts the Laravel server, queue worker, log viewer (Pail), and Vite dev server.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Composer Packages
+
+### nunomaduro/essentials [github](https://github.com/nunomaduro/essentials)
+> Provides better defaults for your Laravel applications.
+
+What it does:
+- Strict Models
+- Auto Eager Loading
+- Optional Unguarded Models
+- Immutable Dates
+- Force HTTPS
+- Safe Console
+- Asset Prefetching
+- Prevent Stray Requests
+- Fake Sleep
+
+### laravel/pint [github](https://github.com/laravel/pint)
+> Laravel Pint is an opinionated PHP code style fixer for minimalists.
+
+Code style fixer configured with `pint.json` file.
+
+### rector-laravel [github](https://github.com/driftingly/rector-laravel)
+> Rector instantly upgrades and refactors the PHP code of your application.
+
+rector-laravel uses Rector and adds extra rules for Laravel. It automates upgrading your code to the latest version of PHP and Laravel and does auto-refactoring based on the rules in `rector.php`.
+
+### phpstan and larastan [github](https://github.com/nunomaduro/larastan)
+> Larastan focuses on finding errors in your code. It catches whole classes of bugs even before you write tests for the code.
+
+Configured with `phpstan.neon`. This project uses level 6.
+
+## Testing
+
+This project uses PHPUnit for testing.
+
+```bash
+composer test              # Run full test suite (lint + tests)
+php artisan test --compact # Run tests only
+```
+
+## Git Hooks (Pre-commit & Pre-push)
+
+This project uses [Husky](https://typicode.github.io/husky/) to automate code quality checks before commits and pushes. These hooks ensure consistent code quality across the team.
+
+### Pre-commit Hook
+
+Runs automatically before every commit using [lint-staged](https://github.com/lint-staged/lint-staged). Only staged files are checked:
+
+**For JavaScript/TypeScript files** (`resources/**/*.{ts,tsx,js,jsx}`):
+- **Prettier**: Auto-formats code
+- **ESLint**: Lints and auto-fixes issues
+
+**For TypeScript files** (`resources/**/*.{ts,tsx}`):
+- **TypeScript**: Type-checks without emitting files
+
+**For PHP files** (`{app,bootstrap,config,database,routes,tests}/**/*.php`):
+- **Pint**: Auto-formats code according to Laravel standards
+
+**For PHP application files** (excluding tests):
+- **PHPStan (Level 6)**: Static analysis to catch bugs
+
+If any check fails, the commit will be blocked. Fix the issues and try again.
+
+### Pre-push Hook
+
+Runs automatically before every push:
+
+1. **Test Suite** (`composer test`): Runs all tests
+   - If tests fail, the push is blocked
+
+2. **Rector Analysis** (`vendor/bin/rector process --dry-run`): Checks for potential refactoring improvements
+   - If Rector suggests changes, you'll be prompted to continue or abort
+   - Run `vendor/bin/rector process` to apply suggestions automatically
+
+### Working with Git Hooks
+
+#### Bypassing Hooks (Not Recommended)
+If you absolutely need to bypass hooks:
+```bash
+git commit --no-verify -m "your message"
+git push --no-verify
+```
+
+**Note**: Only bypass hooks if you understand the consequences. Your code may not meet quality standards.
+
+#### Running Checks Manually
+
+```bash
+# Run lint-staged manually
+npm run precommit
+
+# Run individual checks
+npm run format          # Format frontend code
+npm run lint            # Lint frontend code
+npm run types           # Check TypeScript types
+vendor/bin/pint         # Format PHP code
+vendor/bin/phpstan analyse  # Run PHPStan analysis
+
+# Run test suite
+composer test
+
+# Run Rector
+vendor/bin/rector process --dry-run  # Check suggestions
+vendor/bin/rector process            # Apply suggestions
+```
+
+#### Setting Up Hooks (First Time)
+
+Hooks are automatically installed when you run `npm install` (via the `prepare` script). If they're not working:
+
+```bash
+npm run prepare  # Reinstalls Husky hooks
+```
+
+### Configuration Files
+
+| File | Purpose |
+|------|---------|
+| `.husky/pre-commit` | Pre-commit hook script |
+| `.husky/pre-push` | Pre-push hook script |
+| `.lintstagedrc.json` | Lint-staged configuration |
+| `pint.json` | Pint (PHP formatter) rules |
+| `phpstan.neon` | PHPStan static analysis config |
+| `rector.php` | Rector refactoring rules |
+| `eslint.config.js` | ESLint configuration |
+| `.prettierrc` | Prettier configuration |
+| `tsconfig.json` | TypeScript configuration |
 
 ## License
 
